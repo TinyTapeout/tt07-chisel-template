@@ -38,7 +38,9 @@ jobs:
         run: |
           cd test
           make clean
+          rm -f results.xml
           make
+          test -f results.xml
           # make will return success even if the test fails, so check for failure in the results.xml
           ! grep failure results.xml
 
@@ -55,4 +57,4 @@ jobs:
           name: test-vcd
           path: |
             test/tb.vcd
-            test/result.xml
+            test/results.xml
